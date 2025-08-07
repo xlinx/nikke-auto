@@ -14,7 +14,14 @@ while true; do
   sleep 1;
 done
 
+#All nature action, no need root
 #this script need android device, and enable developer mode.
+
+#when developer mode ok then install android adb tool(for send device tap command)
+#brew install adb-enhanced
+
+#image tool: imagemagick (for check blue button)
+#brew install imagemagick
 
 # this is for unlimited tower automation
 # script will chekc if blue "NEXT" the click it to next level
