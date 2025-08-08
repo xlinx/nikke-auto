@@ -1,41 +1,41 @@
 # nikke-auto
 * All nature action, no need root
- - Android device 
- - ![alt text](next.png)
+* Android device
+* Game
+  * 🔴 Auto-Hot-Key (not-recommand) 
+    * https://www.autohotkey.com/
+  * 🟢 Auto-tower (ready4Use)
+    - requirement: adb
+      * [<img src="./autoTower/next.png" width="50"/>](https://decade.tw/)
+  * 🟠 nikke-auto-MCP-ai (updating)
+    - requirement: nodejs, adb, lm-studio or ollama which can load MCP protocol 3rd ai chat tool are fine.
+    * [<img src="https://lmstudio.ai/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flmstudio-app-logo.11b4d746.webp&w=32&q=75" height="20"/>](https://lmstudio.ai/) LLM LM-Studio
 
-
-
-```java
-
-#All nature action, no need root
-#this script need android device, and enable developer mode.
-
-#when developer mode ok then install android adb tool(for send device tap command)
-brew install adb-enhanced
-
-#image tool: imagemagick (for check blue button)
-brew install imagemagick
-
-# this is for unlimited tower automation
-# script will chekc if blue "NEXT" the click it to next level
-
-#change the xy 860 2200 as your device. (mine is S23U)
-```
+### install Auto-tower
 
 ```shell
-#!/bin/bash
-adb shell input tap 860 2200;
-while true; do
-  adb exec-out screencap -p > screenshot.png
-  magick screenshot.png -crop 5x5+860+2200 output.jpg
-#  magick identify -verbose output.jpg | grep 'blue primary:' | awk -F'[(),]' '{print $2, $3, $4}'
-  color=$(magick identify -format "%[pixel:u.p{1,1}]" output.jpg  |  awk -F'[(),]' '{print $4}')
-  echo "Checking screen color..."
-  if (( $(echo "$color > 180" | bc -l) )); then
-    adb shell input tap 860 2200
-  else
-    echo "Not blue, value: $color"
-  fi
-  sleep 1;
-done
+# Auto-tower
+#when developer mode ok then install android adb tool(for send device tap command)
+brew install adb-enhanced
+#image tool: imagemagick (for check blue button)
+brew install imagemagick
+cd autoTower
+sh nikke_ADB.sh
+
+
+```
+### install nikke-auto-MCP-ai
+
+```shell
+
+# nikke-MCP-ai
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+nvm install 12
+cd nikke-MCP-ai
+npm install
+node run nikkeMcpServer
+
+#open ur 3rd chat tool: lm-studio (https://lmstudio.ai/)
+
+
 ```

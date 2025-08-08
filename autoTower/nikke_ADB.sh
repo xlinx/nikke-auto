@@ -1,4 +1,5 @@
 #!/bin/bash
+# http://decade.tw
 adb shell input tap 860 2200;
 while true; do
   adb exec-out screencap -p > screenshot.png
